@@ -1,8 +1,8 @@
 import os
-from pdf2docx import Converter,parse
+from pdf2docx import parse
 from flask import Flask, request, json
 from pytube import YouTube
-from werkzeug.utils import secure_filename
+
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'static/img/'
 
