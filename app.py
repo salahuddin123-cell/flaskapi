@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, send_file
 
 
 import os
@@ -30,10 +30,10 @@ def convert_file():
     if request.method == 'POST':
         pdf_file = "static/img/my.pdf"
         docx_file = os.path.expanduser(f"~/Downloads/random.docx")
-        print(docx_file)
-
+         
         # convert pdf to docx
         parse(pdf_file, docx_file)  
+        send_file(docx_file,as_attachment=True)
         return "conveted to docs"
    
 @app.route('/download',methods=["GET","POST"])
