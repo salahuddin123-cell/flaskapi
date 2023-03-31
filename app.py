@@ -30,6 +30,7 @@ def convert_file():
     if request.method == 'POST':
         pdf_file = "static/img/my.pdf"
         docx_file = os.path.expanduser(f"~/Downloads/random.docx")
+        print(docx_file)
 
         # convert pdf to docx
         parse(pdf_file, docx_file)  
