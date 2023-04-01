@@ -40,16 +40,16 @@ def convert_file():
 @app.route('/download',methods=["GET","POST"])
 
 def download():
+    if request.method == 'POST':
 
-
-    url=json.loads(request.data)
-  
-    yt = YouTube(url['data'])
-    video=yt.streams.get_lowest_resolution().download()
-    fname=video.split("//")[-1]
-    return send_file(
-        fname,
-        as_attachment=True)
+        url=json.loads(request.data)
+    
+        yt = YouTube(url['data'])
+        video=yt.streams.get_lowest_resolution().download()
+        fname=video.split("//")[-1]
+        return send_file(
+            fname,
+            as_attachment=True)
 
 
 if __name__ == '__main__':
