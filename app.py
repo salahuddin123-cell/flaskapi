@@ -1,5 +1,6 @@
 from flask import Flask, send_file
 from io import BytesIO
+from flask_cors import CORS
 
 import os
 from pdf2docx import parse
@@ -7,6 +8,7 @@ from flask import Flask, request, json
 from pytube import YouTube
 
 app = Flask(__name__)
+CORS(app)
 app.config['UPLOAD_FOLDER'] = 'static/img/'
 
 @app.route('/<int:number>/')
