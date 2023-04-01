@@ -1,5 +1,5 @@
 from flask import Flask, send_file
-
+from io import BytesIO
 
 import os
 from pdf2docx import parse
@@ -24,31 +24,30 @@ def upload_file():
       f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
     #   f.save(secure_filename(f.filename))
       return 'file uploaded successfully'
-   
+
 @app.route('/convert',methods=["GET","POST"])
 def convert_file():
-    if request.method == 'POST':
+
         pdf_file = "static/img/my.pdf"
         docx_file="static/docx/random.docx"
         # docx_file = os.path.expanduser(f"~/Downloads/random.docx")
-         
+
         # convert pdf to docx
-        parse(pdf_file, docx_file)  
-        send_file(docx_file,as_attachment=True)
-        return "conveted to docs"
-   
+        parse(pdf_file, docx_file)
+
+        return send_file(docx_file,as_attachment=True)
+
 @app.route('/download',methods=["GET","POST"])
 
 def download():
-    url=json.loads(request.data)
-    print(url['data'])
-    yt = YouTube(url['data'])
-    try:
-        yt.streams.get_lowest_resolution().download(os.path.expanduser("~/Downloads"))
-    except:
-        print("Some Error!")
-    print('downloaded')
-    return url
+
+
+    yt = YouTube("https://youtube.com/shorts/uMBp__8hLOU")
+    video=yt.streams.get_lowest_resolution().download()
+    fname=video.split("//")[-1]
+    return send_file(
+        fname,
+        as_attachment=True)
 
 
 if __name__ == '__main__':
