@@ -42,7 +42,9 @@ def convert_file():
 def download():
 
 
-    yt = YouTube("https://youtube.com/shorts/uMBp__8hLOU")
+    url=json.loads(request.data)
+  
+    yt = YouTube(url['data'])
     video=yt.streams.get_lowest_resolution().download()
     fname=video.split("//")[-1]
     return send_file(
