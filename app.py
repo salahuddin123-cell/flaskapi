@@ -52,7 +52,8 @@ def download():
         url=json.loads(request.data)
     
         yt = YouTube(url['data'])
-        video=yt.streams.get_lowest_resolution().download()
+        file_name = 'my_video.mp4'
+        video=yt.streams.get_lowest_resolution().download(filename=file_name)
         fname=video.split("//")[-1]
         return send_file(
             fname,
