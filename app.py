@@ -9,6 +9,11 @@ from pytube import YouTube
 
 app = Flask(__name__)
 CORS(app)
+# cors = CORS(app, resource={
+#     r"/*":{
+#         "origins":"*"
+#     }
+# })
 app.config['UPLOAD_FOLDER'] = 'static/img/'
 
 @app.route('/<int:number>/')
