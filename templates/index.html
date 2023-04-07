@@ -7,26 +7,27 @@
     <title>Document</title>
 </head>
 <body>
-  
-    <h1>YouTube Video Downloader</h1>
-</header>
+       <h1>MediaGrabber</h1>
+   </header>
 
 <nav>
     <ul>
-        <li><a href="#tab1">Instagram / facebook video download</a></li>
-        <li><a href="#tab2">PDF TO DOCS </a></li>
-        <li><a href="#tab3">VIDEO TO MP3</a></li>
+        <!-- <li><a href="#tab1">Instagram / facebook video download</a></li> -->
+        <li ><a style="background-color: brown;" href="/">Home </a></li>
+        <li><a href="/pdf2doc">PDF TO DOCS </a></li>
+        <!-- <li><a href="#tab3">VIDEO TO MP3</a></li> -->
     </ul>
 </nav>
 
 <main>
   
         <h2>Download YouTube Videos</h2>
-        <div class="form">
+       
         <form action="/download" method="post">
+            <div class="form">
             <div>
-            <label for="url">Enter the YouTube video URL:</label>
-            <input type="text" placeholder="Enter your URL" class="url" id="url" name="url">
+            <!-- <label for="url">Enter the YouTube video URL:</label> -->
+            <input type="text" placeholder="Enter the YouTube video URL" class="url" id="url" name="url">
         </div>
         <div>
             <select name="quality" id="quality">
@@ -36,8 +37,9 @@
             </select>
             <button type="submit" class="download" value="submit">download</button>
         </div>
-        </form>
     </div>
+        </form>
+ 
         <!-- <img class="img" src="{{ url_for('static', filename='images/bird.jpg') }}"  class="image"/> -->
    
    

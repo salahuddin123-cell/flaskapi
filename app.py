@@ -20,7 +20,9 @@ app.config['UPLOAD_FOLDER'] = 'static/img/'
 @app.route('/')
 def showtemplate():
     return render_template('index.html')
-
+@app.route('/pdf2doc')
+def showtemplate2():
+    return render_template('pdf2docx.html')
 
 @app.route('/uploader', methods=['GET', 'POST'])
 def upload_file():
@@ -29,7 +31,7 @@ def upload_file():
         filename = "my.pdf"
         f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
     #   f.save(secure_filename(f.filename))
-        return 'file uploaded successfully'
+        return render_template('uploaded.html')
 
 
 @app.route('/convert', methods=["GET", "POST"])
@@ -54,13 +56,13 @@ def download():
         qulity=request.form['quality']
         yt = YouTube(url)
         file_name = 'my_video.mp4'
-        file_name="my_audio.mp3"
+        file_name2="my_audio.mp3"
         if qulity=='high':
             video = yt.streams.get_highest_resolution().download(filename=file_name)
         elif qulity=='low':
              video = yt.streams.get_lowest_resolution().download(filename=file_name)
         else:
-            video = yt.streams.filter(only_audio=True).first().download(filename=file_name)
+            video = yt.streams.filter(only_audio=True).first().download(filename=file_name2)
         fname = video.split("//")[-1]
         print(fname)
         return send_file(

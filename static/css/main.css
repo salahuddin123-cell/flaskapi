@@ -44,23 +44,24 @@ nav a:hover {
 
 main {
 	animation: fade-in 0.5s;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  justify-content: center;
+	display: grid;
+	place-items: center;
+  
 }
 .form{
 	display: flex;
-	flex-direction: rowflask;
-	justify-content: center;
-	align-items: center;
+	display: flex;
+    flex-direction: row;
+    align-items: center;
+	gap: 25px;
+  justify-content: center;
+
 }
-@media screen and (max-width: 992px){
-	.form{
-		flex-direction: column;
-		padding: 50px;
-	}
+.form>div:nth-child(1){
+	display: flex;
+	flex-direction: row;
 }
+
 .tab {
 	padding: 20px;
 	display: none;
@@ -131,11 +132,22 @@ footer {
 	animation: fade-in 0.5s;
 }
 .img{
-	width: 500px;
-	height: 500px;
+	width: 100px;
+	height: 50px;
 }
 
 /* Animations */
+@media screen and (max-width:992px) {
+	.form{
+		flex-direction: column;
+	}
+	.form>div:nth-child(1){
+		flex-direction: column;
+	}
+	.url{
+		width: 60vw;
+	}
+}
 
 @keyframes fade-in {
 	from { opacity: 0; }

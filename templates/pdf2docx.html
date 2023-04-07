@@ -1,0 +1,45 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <title>Document</title>
+</head>
+<body>
+  
+    <h1>MediaGrabber</h1>
+</header>
+
+<nav>
+    <ul>
+        <!-- <li><a href="#tab1">Instagram / facebook video download</a></li> -->
+        <li><a href="/">Home </a></li>
+        <li  ><a style="background-color: brown;" href="/pdf2doc">PDF TO DOCS </a></li>
+        <!-- <li><a href="#tab3">VIDEO TO MP3</a></li> -->
+    </ul>
+</nav>
+
+<main>
+    <h2>Convert pdf to docx file</h2>
+   
+    <form action = "/uploader" method = "POST" 
+    enctype = "multipart/form-data">
+    <input type = "file" name = "file" />
+    <input type = "submit" value="convert"/>
+ </form>
+ 
+ 
+       
+  
+ 
+
+   
+</main>
+
+<footer>
+    <p>Copyright © 2023</p>
+</footer>
+</form>
+</body>
+</html>
