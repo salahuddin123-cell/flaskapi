@@ -3,9 +3,38 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <title>Document</title>
 </head>
 <body>
-    helloo  abjhbhabh
+  
+    <h1>YouTube Video Downloader</h1>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="#tab1">Instagram / facebook video download</a></li>
+        <li><a href="#tab2">PDF TO DOCS </a></li>
+        <li><a href="#tab3">VIDEO TO MP3</a></li>
+    </ul>
+</nav>
+
+<main>
+    <section id="tab1">
+        <h2>Download YouTube Videos</h2>
+        <form action="/download" method="post">
+            <label for="url">Enter the YouTube video URL:</label>
+            <input type="text" placeholder="Enter your URL" class="url" id="url" name="url">
+            <button type="submit" class="download" value="submit">download</button>
+        </form>
+    </section>
+
+   
+</main>
+
+<footer>
+    <p>Copyright © 2023</p>
+</footer>
+</form>
 </body>
 </html>
