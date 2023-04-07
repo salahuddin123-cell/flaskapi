@@ -51,10 +51,16 @@ def download():
 
         # url = json.loads(request.data)
         url=request.form["url"]
-
+        qulity=request.form['quality']
         yt = YouTube(url)
         file_name = 'my_video.mp4'
-        video = yt.streams.get_lowest_resolution().download(filename=file_name)
+        file_name="my_audio.mp3"
+        if qulity=='high':
+            video = yt.streams.get_highest_resolution().download(filename=file_name)
+        elif qulity=='low':
+             video = yt.streams.get_lowest_resolution().download(filename=file_name)
+        else:
+            video = yt.streams.filter(only_audio=True).first().download(filename=file_name)
         fname = video.split("//")[-1]
         print(fname)
         return send_file(

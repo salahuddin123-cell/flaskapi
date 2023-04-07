@@ -2,8 +2,9 @@ body {
 	font-family: Arial, sans-serif;
 	margin: 0;
 	padding: 0;
-    background-color: #444654;
     color: white;
+	background-image: url('/static/images/backg.png');
+	background-size: 400%;
 }
 
 header {
@@ -48,7 +49,18 @@ main {
     align-items: center;
   justify-content: center;
 }
-
+.form{
+	display: flex;
+	flex-direction: rowflask;
+	justify-content: center;
+	align-items: center;
+}
+@media screen and (max-width: 992px){
+	.form{
+		flex-direction: column;
+		padding: 50px;
+	}
+}
 .tab {
 	padding: 20px;
 	display: none;
@@ -62,6 +74,13 @@ main {
     height: 30px;
     border: none;
     width: 20vw;
+    padding: 0 5px;
+    border-radius: 2px;
+}
+#quality{
+	height: 30px;
+    border: none;
+
     padding: 0 5px;
     border-radius: 2px;
 }
@@ -110,6 +129,10 @@ footer {
 	bottom: 0;
 	width: 100%;
 	animation: fade-in 0.5s;
+}
+.img{
+	width: 500px;
+	height: 500px;
 }
 
 /* Animations */

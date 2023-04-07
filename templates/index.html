@@ -20,15 +20,26 @@
 </nav>
 
 <main>
-    <section id="tab1">
+  
         <h2>Download YouTube Videos</h2>
+        <div class="form">
         <form action="/download" method="post">
+            <div>
             <label for="url">Enter the YouTube video URL:</label>
             <input type="text" placeholder="Enter your URL" class="url" id="url" name="url">
+        </div>
+        <div>
+            <select name="quality" id="quality">
+                <option value="high">Hightest quality</option>
+                <option value="low">Lowest quality</option>
+                <option value="high">MP3</option>
+            </select>
             <button type="submit" class="download" value="submit">download</button>
+        </div>
         </form>
-    </section>
-
+    </div>
+        <!-- <img class="img" src="{{ url_for('static', filename='images/bird.jpg') }}"  class="image"/> -->
+   
    
 </main>
 
