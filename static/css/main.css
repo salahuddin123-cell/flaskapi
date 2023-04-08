@@ -69,6 +69,7 @@ main {
 h1{
 	font-style: italic;
 	font-family: 'Courier New', Courier, monospace;
+	margin: 20px;
 }
 .tab.active {
 	display: block;
