@@ -3,7 +3,7 @@ from io import BytesIO
 from flask_cors import CORS
 
 import os
-from pdf2docx import parse
+from pdf2docx import parse,Converter
 from flask import Flask, request, json
 from pytube import YouTube
 
@@ -39,10 +39,9 @@ def convert_file():
 
     pdf_file = "static/img/my.pdf"
     docx_file = "static/docx/random.docx"
-    # docx_file = os.path.expanduser(f"~/Downloads/random.docx")
-
-    # convert pdf to docx
-    parse(pdf_file, docx_file)
+    cv = Converter(pdf_file)
+    cv.convert(docx_file)      # all pages by default
+    cv.close()
 
     return send_file(docx_file, as_attachment=True)
 
