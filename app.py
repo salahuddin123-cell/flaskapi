@@ -54,8 +54,8 @@ def progress():
     if request.method=='GET':
         return {"count":count}
 
-@app.route('/getstreams', methods=["GET", "POST"])
-def getstreams():
+# @app.route('/getstreams', methods=["GET", "POST"])
+# def getstreams():
     if request.method=='POST':
         url = json.loads(request.data)['url']
         yt = YouTube(url)
