@@ -114,7 +114,7 @@ def download():
         elif quality=="mp3":
             video = yt.streams.filter(only_audio=True).first().download(filename=tail.strip(" | ").replace("(\'\',","").replace('")','') + ".mp3",output_path=download_folder)
         else:
-            yt.streams.filter(res=quality).first().download(download_folder)
+            video=yt.streams.filter(res=quality).first().download(download_folder)
         fname = video.split("//")[-1]
         print(fname)
         return send_file(
