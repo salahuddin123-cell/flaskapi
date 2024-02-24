@@ -4,11 +4,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
     <title>Document</title>
+    
 </head>
 <body>
+    <script>
+//         if (data==100){
+//            clearInterval(myinterval)
+//         }
+//         var data = '{{data}}'
+//         async function logData() {
+//         const response = await fetch("http://127.0.0.1:5000/progress");
+//         const count = await response.json();
+//         data=count.count
+//         console.log(data);
+//         document.getElementById('d').innerText=data
+
+// }
+
+// const myinterval=setInterval(() => {
+//     logData()
+// }, 1000);
+// console.log(data)
+// if(data==100){
+//     console.log('hmm')
+//     clearInterval(myinterval)
+// }
+// //clearInterval(myinterval)
+        </script>
        <h1>MediaGrabber</h1>
-   </header>
+  
 
 <nav>
     <ul>
@@ -27,16 +53,17 @@
             <div class="form">
             <div>
             <!-- <label for="url">Enter the YouTube video URL:</label> -->
-            <input type="text" placeholder="Enter the YouTube video URL" class="url" id="url" name="url">
+            <input type="text" placeholder="Enter the YouTube video URL" required class="url" id="url" name="url">
         </div>
         <div>
-            <select name="quality" id="quality">
+            <select name="quality" id="quality" >
                 <option value="high">Hightest quality</option>
                 <option value="low">Lowest quality</option>
                 <option value="mp3">MP3</option>
             </select>
             <button type="submit" class="download" value="submit">download</button>
         </div>
+        <h3 id="d" style="background-color: chocolate;"></h3>
     </div>
         </form>
  
