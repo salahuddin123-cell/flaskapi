@@ -1,5 +1,5 @@
 from pathlib import Path
-from flask import Flask, jsonify, send_file, render_template
+from flask import Flask, jsonify, send_file, render_template,send_from_directory
 from io import BytesIO
 from flask_cors import CORS
 
@@ -117,7 +117,7 @@ def download():
             video=yt.streams.filter(res=quality).first().download(download_folder)
         fname = video.split("//")[-1]
         print(fname)
-        return send_file(
+        return send_from_directory(
             fname,
             as_attachment=True),201
 
