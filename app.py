@@ -75,24 +75,25 @@ def progress():
 #         return { "message":"not availabe"}
 @app.route('/getresult', methods=["POST","OPTIONS","GET"])
 def search_youtube():
-    
-    if request.method=='POST':
-        query = json.loads(request.data)['query']
-        s = Search(query)
-        sresult=[]
-        for v in s.results:
-            sresult.append({
-                "title":v.title,
-                "watch_url":v.watch_url,
-                "thumbnail_url":v.thumbnail_url
+    try:
+        if request.method=='POST':
+            query = json.loads(request.data)['query']
+            s = Search(query)
+            sresult=[]
+            for v in s.results:
+                sresult.append({
+                    "title":v.title,
+                    "watch_url":v.watch_url,
+                    "thumbnail_url":v.thumbnail_url
 
-            })
-            #print(f"{v.title}\n{v.watch_url}\n")
-            
-        return jsonify({"data":sresult})
-    else:
-        return jsonify({"data":"user not available"})
-    
+                })
+                #print(f"{v.title}\n{v.watch_url}\n")
+                
+            return jsonify({"data":sresult})
+        else:
+            return jsonify({"data":"user not available"})
+    except Exception as e:
+        print(e)  
 
 @app.route('/download', methods=["GET", "POST"])
 def download():
