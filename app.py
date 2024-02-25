@@ -11,7 +11,7 @@ from pytube import YouTube
 from pytube import Search
 
 app = Flask(__name__, template_folder='templates')
-CORS(app, origins=["http://localhost:8000", "https://example.com"])
+CORS(app, origins=["http://localhost:3000", "https://example.com"])
 # cors = CORS(app, resource={
 #     r"/*":{
 #         "origins":"*"
