@@ -22,6 +22,7 @@ app.config['UPLOAD_FOLDER'] = 'static/img/'
 
 count=0
 reslist=[]
+sresult=[]
 api_key='AIzaSyALfHNwBfbZKWS540LcJdqGTzBfRXzeQLc'
 @app.route('/')
 def showtemplate():
@@ -80,7 +81,7 @@ def search_youtube():
         try:
             query = json.loads(request.data)['query']
             s = Search(query)
-            sresult=[]
+            
             for v in s.results:
                 sresult.append({
                     "title":v.title,
@@ -92,8 +93,8 @@ def search_youtube():
                 
             return jsonify({"data":sresult})
         except Exception as e:
-            print(e)
-            return {'data':str(e)}
+           
+            return {'data':str(e)},400
     else:
         return jsonify({"data":"user not available"})
      
