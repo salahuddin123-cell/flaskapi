@@ -75,8 +75,9 @@ def progress():
 #         return { "message":"not availabe"}
 @app.route('/getresult', methods=["POST","OPTIONS","GET"])
 def search_youtube():
-    try:
-        if request.method=='POST':
+    
+    if request.method=='POST':
+        try:
             query = json.loads(request.data)['query']
             s = Search(query)
             sresult=[]
@@ -90,10 +91,11 @@ def search_youtube():
                 #print(f"{v.title}\n{v.watch_url}\n")
                 
             return jsonify({"data":sresult})
-        else:
-            return jsonify({"data":"user not available"})
-    except Exception as e:
-        print(e)  
+        except Exception as e:
+            print(e)
+    else:
+        return jsonify({"data":"user not available"})
+     
 
 @app.route('/download', methods=["GET", "POST"])
 def download():
