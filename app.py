@@ -21,6 +21,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 app.config['UPLOAD_FOLDER'] = 'static/img/'
 
 count=0
+reslist=[]
 api_key='AIzaSyALfHNwBfbZKWS540LcJdqGTzBfRXzeQLc'
 @app.route('/')
 def showtemplate():
@@ -55,12 +56,12 @@ def progress():
     if request.method=='GET':
         return {"count":count}
 
-# @app.route('/getstreams', methods=["GET", "POST"])
-# def getstreams():
+@app.route('/getstreams', methods=["GET", "POST"])
+def getstreams():
     if request.method=='POST':
         url = json.loads(request.data)['url']
         yt = YouTube(url)
-        reslist=[]
+        
         for stream in yt.streams:
             
             if(str(stream.resolution).endswith("p") and str(stream.resolution) not in reslist):
