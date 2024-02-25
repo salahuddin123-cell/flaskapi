@@ -56,7 +56,7 @@ def progress():
     if request.method=='GET':
         return {"count":count}
 
-@app.route('/getstreams', methods=["GET", "POST"])
+@app.route('/getstreams', methods=["GET", "POST","options"])
 def getstreams():
     if request.method=='POST':
         url = json.loads(request.data)['url']
@@ -67,6 +67,8 @@ def getstreams():
             if(str(stream.resolution).endswith("p") and str(stream.resolution) not in reslist):
                 reslist.append(stream.resolution)
                 print(stream)
+            else:
+                print("not now")
         
         return jsonify({"data":reslist})
     else:
