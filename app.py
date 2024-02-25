@@ -12,6 +12,7 @@ from pytube import Search
 
 app = Flask(__name__, template_folder='templates')
 CORS(app, origins=["*"])
+app.config['CORS_HEADERS'] = 'Content-Type'
 # cors = CORS(app, resource={
 #     r"/*":{
 #         "origins":"*"
