@@ -70,7 +70,7 @@ def progress():
         return jsonify({"data":reslist})
     else:
         return { "message":"not availabe"}
-@app.route('/getresult', methods=["GET", "POST"])
+@app.route('/getresult', methods=["POST","OPTIONs","GET"])
 def search_youtube():
     
     if request.method=='POST':
