@@ -11,12 +11,12 @@ from pytube import YouTube
 from pytube import Search
 
 app = Flask(__name__, template_folder='templates')
-
-cors = CORS(app, resource={
-    r"/*":{
-        "origins":"*"
-    }
-})
+CORS(app)
+# cors = CORS(app, resource={
+#     r"/*":{
+#         "origins":"*"
+#     }
+# })
 app.config['UPLOAD_FOLDER'] = 'static/img/'
 
 count=0
