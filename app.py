@@ -93,6 +93,7 @@ def search_youtube():
             return jsonify({"data":sresult})
         except Exception as e:
             print(e)
+            return {'data':e}
     else:
         return jsonify({"data":"user not available"})
      
