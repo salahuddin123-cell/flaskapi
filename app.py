@@ -56,23 +56,23 @@ def progress():
     if request.method=='GET':
         return {"count":count}
 
-@app.route('/getstreams', methods=["GET", "POST","options"])
-def getstreams():
-    if request.method=='POST':
-        url = json.loads(request.data)['url']
-        yt = YouTube(url)
+# @app.route('/getstreams', methods=["GET", "POST","options"])
+# def getstreams():
+#     if request.method=='POST':
+#         url = json.loads(request.data)['url']
+#         yt = YouTube(url)
         
-        for stream in yt.streams:
+#         for stream in yt.streams:
             
-            if(str(stream.resolution).endswith("p") and str(stream.resolution) not in reslist):
-                reslist.append(stream.resolution)
-                print(stream)
-            else:
-                print("not now")
+#             if(str(stream.resolution).endswith("p") and str(stream.resolution) not in reslist):
+#                 reslist.append(stream.resolution)
+#                 print(stream)
+#             else:
+#                 print("not now")
         
-        return jsonify({"data":reslist})
-    else:
-        return { "message":"not availabe"}
+#         return jsonify({"data":reslist})
+#     else:
+#         return { "message":"not availabe"}
 @app.route('/getresult', methods=["POST","OPTIONS","GET"])
 def search_youtube():
     
@@ -118,7 +118,15 @@ def download():
         elif quality=="mp3":
             video = yt.streams.filter(only_audio=True).first().download(filename=tail.strip(" | ").replace("(\'\',","").replace('")','') + ".mp3",output_path=download_folder)
         else:
-            video=yt.streams.filter(res=quality).first().download(download_folder)
+            try:
+                video=yt.streams.filter(res=quality).first().download(download_folder)
+            except Exception as e:
+                if int(quality.strip('p'))<=360:
+                    video = yt.streams.get_lowest_resolution().download(download_folder)
+                else:
+                    video = yt.streams.get_highest_resolution().download(download_folder)
+
+
         fname = video.split("//")[-1]
         print(fname)
         return send_file(
