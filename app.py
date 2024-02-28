@@ -22,7 +22,7 @@ app.config['UPLOAD_FOLDER'] = 'static/img/'
 
 count=0
 reslist=[]
-sresult=[]
+
 api_key='AIzaSyALfHNwBfbZKWS540LcJdqGTzBfRXzeQLc'
 @app.route('/')
 def showtemplate():
@@ -76,7 +76,7 @@ def progress():
 #         return { "message":"not availabe"}
 @app.route('/getresult', methods=["POST","OPTIONS","GET"])
 def search_youtube():
-    
+    sresult=[]
     if request.method=='POST':
         try:
             query = json.loads(request.data)['query']
