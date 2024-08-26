@@ -7,9 +7,11 @@ import os
 from pdf2docx import parse,Converter
 from flask import Flask, request, json
 from pytube import YouTube
+from pytube.innertube import _default_clients
 # from googleapiclient.discovery import build
 from pytube import Search
-
+_default_clients["ANDROID"]["context"]["client"]["clientVersion"] = "19.08.35"
+_default_clients["ANDROID_MUSIC"] = _default_clients["ANDROID"]
 app = Flask(__name__, template_folder='templates')
 CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
@@ -90,8 +92,8 @@ def search_youtube():
 
                 })
                 #print(f"{v.title}\n{v.watch_url}\n")
-                
-            return jsonify({"data":sresult})
+            
+            return jsonify({"data":sresult}),201
         except Exception as e:
            
             return {'data':str(e)},400
@@ -115,7 +117,7 @@ def download():
         tail = str(os.path.split(yt.title))
         
         download_folder=str(os.path.join(Path.home(),"Downloads"))
-       
+        
         if quality=='high':
             video = yt.streams.get_highest_resolution().download(download_folder)
         elif quality=='low':
