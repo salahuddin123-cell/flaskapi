@@ -62,22 +62,22 @@ def progress():
     if request.method=='GET':
         return {"count":count}
 
-@app.route('/getstreams', methods=["GET", "POST","options"])
-def getstreams():
-    if request.method=='POST':
-        url = json.loads(request.data)['url']
-        yt = YouTube(url)
-        reslist=[]
-        for stream in yt.streams:
+# @app.route('/getstreams', methods=["GET", "POST","options"])
+# def getstreams():
+#     if request.method=='POST':
+#         url = json.loads(request.data)['url']
+#         yt = YouTube(url)
+#         reslist=[]
+#         for stream in yt.streams:
             
-            if(str(stream.resolution).endswith("p") and str(stream.resolution) not in reslist):
-                reslist.append(stream.resolution)
-                print(stream)
+#             if(str(stream.resolution).endswith("p") and str(stream.resolution) not in reslist):
+#                 reslist.append(stream.resolution)
+#                 print(stream)
            
-        sorted_result=sorted(reslist, key=lambda x: int(x[:-1]),reverse=True)
-        return {"data":sorted_result}
-    else:
-        return { "message":"not availabe"}
+#         sorted_result=sorted(reslist, key=lambda x: int(x[:-1]),reverse=True)
+#         return {"data":sorted_result}
+#     else:
+#         return { "message":"not availabe"}
     
 @app.route('/getresult', methods=["POST","OPTIONS","GET"])
 def search_youtube():
