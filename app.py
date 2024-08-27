@@ -75,7 +75,7 @@ def getstreams():
                 print(stream)
            
         sorted_result=sorted(reslist, key=lambda x: int(x[:-1]),reverse=True)
-        return jsonify({"data":sorted_result})
+        return {"data":sorted_result}
     else:
         return { "message":"not availabe"}
     
