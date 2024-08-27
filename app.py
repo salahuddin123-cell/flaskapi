@@ -18,11 +18,7 @@ _default_clients["ANDROID_MUSIC"] = _default_clients["ANDROID"]
 app = Flask(__name__, template_folder='templates')
 CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
-cors = CORS(app, resource={
-    r"/*":{
-        "origins":"*"
-    }
-})
+
 app.config['UPLOAD_FOLDER'] = 'static/img/'
 
 count=0
