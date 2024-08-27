@@ -7,11 +7,14 @@ import os
 from pdf2docx import parse,Converter
 from flask import Flask, request, json
 from pytube import YouTube
+
 from pytube.innertube import _default_clients
 # from googleapiclient.discovery import build
 from pytube import Search
+
 _default_clients["ANDROID"]["context"]["client"]["clientVersion"] = "19.08.35"
 _default_clients["ANDROID_MUSIC"] = _default_clients["ANDROID"]
+
 app = Flask(__name__, template_folder='templates')
 CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
@@ -23,7 +26,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 app.config['UPLOAD_FOLDER'] = 'static/img/'
 
 count=0
-reslist=[]
+
 
 api_key='AIzaSyALfHNwBfbZKWS540LcJdqGTzBfRXzeQLc'
 @app.route('/')
@@ -59,23 +62,23 @@ def progress():
     if request.method=='GET':
         return {"count":count}
 
-# @app.route('/getstreams', methods=["GET", "POST","options"])
-# def getstreams():
-#     if request.method=='POST':
-#         url = json.loads(request.data)['url']
-#         yt = YouTube(url)
-        
-#         for stream in yt.streams:
+@app.route('/getstreams', methods=["GET", "POST","options"])
+def getstreams():
+    if request.method=='POST':
+        url = json.loads(request.data)['url']
+        yt = YouTube(url)
+        reslist=[]
+        for stream in yt.streams:
             
-#             if(str(stream.resolution).endswith("p") and str(stream.resolution) not in reslist):
-#                 reslist.append(stream.resolution)
-#                 print(stream)
-#             else:
-#                 print("not now")
-        
-#         return jsonify({"data":reslist})
-#     else:
-#         return { "message":"not availabe"}
+            if(str(stream.resolution).endswith("p") and str(stream.resolution) not in reslist):
+                reslist.append(stream.resolution)
+                print(stream)
+           
+        sorted_result=sorted(reslist, key=lambda x: int(x[:-1]),reverse=True)
+        return jsonify({"data":sorted_result})
+    else:
+        return { "message":"not availabe"}
+    
 @app.route('/getresult', methods=["POST","OPTIONS","GET"])
 def search_youtube():
     sresult=[]
@@ -99,7 +102,7 @@ def search_youtube():
             return {'data':str(e)},400
     else:
         return jsonify({"data":"user not available"})
-     
+ 
 
 @app.route('/download', methods=["GET", "POST"])
 def download():
@@ -114,6 +117,11 @@ def download():
         
         #qulity=request.form['quality']
         yt = YouTube(url,on_progress_callback=on_progress)
+        video_streams = yt.streams.filter(progressive=True, file_extension='mp4')
+
+# Display the available video qualities
+        for stream in video_streams:
+            print(f'Resolution: {stream.resolution}, File size: {stream.filesize // (1024 * 1024)} MB')
         tail = str(os.path.split(yt.title))
         
         download_folder=str(os.path.join(Path.home(),"Downloads"))
