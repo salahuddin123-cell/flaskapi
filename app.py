@@ -121,7 +121,7 @@ def download():
 
 # Display the available video qualities
        
-        tail = str(os.path.split(yt.title))
+        # tail = str(os.path.split(yt.title))
         
         download_folder=str(os.path.join(Path.home(),"Downloads"))
         
@@ -130,7 +130,8 @@ def download():
         elif quality=='low':
              video = yt.streams.get_lowest_resolution().download(download_folder)
         elif quality=="mp3":
-            video = yt.streams.filter(only_audio=True).first().download(filename=tail.strip(" | ").replace("(\'\',","").replace('")','') + ".mp3",output_path=download_folder)
+            video = yt.streams.filter(only_audio=True).first().download(download_folder)
+            # filename=tail.strip(" | ").replace("(\'\',","").replace('")','') + ".mp3",output_path=download_folder
         else:
             try:
                 video=yt.streams.filter(res=quality).first().download(download_folder)
