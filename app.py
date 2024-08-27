@@ -117,11 +117,10 @@ def download():
         
         #qulity=request.form['quality']
         yt = YouTube(url,on_progress_callback=on_progress)
-        video_streams = yt.streams.filter(progressive=True, file_extension='mp4')
+        
 
 # Display the available video qualities
-        for stream in video_streams:
-            print(f'Resolution: {stream.resolution}, File size: {stream.filesize // (1024 * 1024)} MB')
+       
         tail = str(os.path.split(yt.title))
         
         download_folder=str(os.path.join(Path.home(),"Downloads"))
